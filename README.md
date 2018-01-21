@@ -1,0 +1,2 @@
+# mongodash
+MongoDB Dashboard Manager
