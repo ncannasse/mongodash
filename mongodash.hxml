@@ -1,0 +1,5 @@
+-js dash.js
+-cp src
+-main Main
+-lib hxnodejs
+-debug

@@ -1,0 +1,20 @@
+{
+  "name": "mongodash",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "^3.3.0",
+    "mongodb": "^2.2.19",
+    "source-map-support": "^0.5.2"
+  },
+  "description": "Mongo DB Dashtable Manager",
+  "main": "dash.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ncannasse/mongodash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ncannasse/mongodash/issues"
+  },
+  "homepage": "https://github.com/ncannasse/mongodash#readme"
+}
