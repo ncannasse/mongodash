@@ -22,13 +22,16 @@ class Server {
 		var baseName = url.split("/").pop();
 		if( baseName.indexOf(".") > 0 && url.indexOf("..") < 0 ) {
 			try {
-				var content = sys.io.File.getBytes("." + url);
 				var ext = baseName.split(".").pop().toLowerCase();
 				switch( ext ) {
 				case "png", "jpg", "jpeg", "gif":
 					resp.setHeader('Content-Type', 'image/' + ext);
+				case "js", "css":
+					//
 				default:
+					throw "not accessible";
 				}
+				var content = sys.io.File.getBytes("." + url);
 				resp.end(js.node.Buffer.hxFromBytes(content));
 				return;
 			} catch( e : Dynamic ) {
@@ -53,13 +56,26 @@ class Server {
 				db = null;
 				resp.end(content);
 			} catch( err : Dynamic ) {
-				onError(err,true);
+				onError(err, true);
 			}
 		});
 	}
 
 	function handleURL( url : String ) : String {
-		throw "Invalid URL : "+url;
+		var tpl = new thx.tpl.Template(sys.io.File.getContent("data/index.html"));
+		return tpl.execute([ "" => "" ]);
 	}
 
+	static function main() {
+		if( js.node.Buffer != null ) {
+			try {
+				var srcMap = js.node.Require.require("source-map-support");
+				srcMap.install();
+				haxe.CallStack.wrapCallSite = srcMap.wrapCallSite;
+			} catch( e : Dynamic ) {
+			}
+			js.Node.process.on("uncaughtException", function(e) js.Node.console.log(e));
+			new Server();
+		}
+	}
 }

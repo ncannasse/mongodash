@@ -1,5 +1,11 @@
 -js dash.js
 -cp src
--main Main
+-main Server
 -lib hxnodejs
+-lib thx.tpl
 -debug
+
+--next
+-js dashclient.js
+-cp src
+-main Client
